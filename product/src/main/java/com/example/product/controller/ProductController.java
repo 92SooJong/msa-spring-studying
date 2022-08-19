@@ -18,8 +18,4 @@ public class ProductController {
         return productService.selectAvailableProducts();
     }
 
-
-
-
-
 }
