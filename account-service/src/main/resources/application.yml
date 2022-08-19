@@ -1,0 +1,57 @@
+
+# server
+server:
+  port: 8081
+  servlet:
+    context-path: /bank/account
+
+
+# Spring
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+  datasource:
+    url: jdbc:h2:mem:account
+  session:
+    store-type: jdbc
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher #Swagger 3
+# Environment
+CUSTOMER: bank-customer
+
+customer:
+  api:
+    url: http://localhost:8080/bank/customer
+
+# Circuit Breaker
+resilience4j.circuitbreaker:
+  instances:
+    backendA:
+      slidingWindowType: COUNT_BASED
+      slidingWindowSize: 10
+      failureRateThreshold : 70 # OPEN 상태로 변경을 위한 실패 비율
+      slowCallRateThreshold: 70 # OPEN 상태로 변경을 위한 느린 호출 비율
+      slowCallDurationThreshold : 1s
+      minimumNumberOfCalls: 10 # 실패 계산을 위한 최소한의 요청개수
+
+
+      #waitDurationInOpenState: 60s # open에서 half_open으로 전환되기위한 대기시간
+      #permittedNumberOfCallsInHalfOpenState: 1 # half_open일때 상태검사를 최소 요청개수
+
+#management:
+#  health:
+#    circuitbreakers:
+#      enabled: true
+#  endpoints:
+#    web:
+#      exposure:
+#        include: health
+#  endpoint:
+#    health:
+#      show-details: always
