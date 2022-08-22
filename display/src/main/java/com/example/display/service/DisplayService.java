@@ -17,6 +17,4 @@ public class DisplayService {
         return productFeignClient.selectAvailableProducts();
     }
 
-
-
 }
