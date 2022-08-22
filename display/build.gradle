@@ -1,5 +1,6 @@
 plugins {
-	id 'org.springframework.boot' version '2.7.3'
+	//id 'org.springframework.boot' version '2.7.3'
+	id 'org.springframework.boot' version '2.5.14'
 	id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 	id 'java'
 }
@@ -24,19 +25,36 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
-	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	// Feign 의존성 추가
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.4'
+
+
+	//implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+
+	// https://mvnrepository.com/artifact/com.netflix.feign/feign-jackson
+	implementation 'com.netflix.feign:feign-jackson:8.18.0'
+
+	// https://mvnrepository.com/artifact/io.github.openfeign/feign-gson
+	implementation 'io.github.openfeign:feign-gson:11.9.1'
+
+	// https://mvnrepository.com/artifact/io.github.openfeign/feign-jaxb
+	implementation 'io.github.openfeign:feign-jaxb:9.3.1'
+
+
+
+
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-	}
-}
+//dependencyManagement {
+//	imports {
+//		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//	}
+//}
 
 tasks.named('test') {
 	useJUnitPlatform()

@@ -14,9 +14,12 @@ public class ProductController {
 
     private final ProductService productService;
 
+    /**
+     * 구매 가능한 제품목록을 모두 조회한다.
+     * @return 제품정보 목록
+     */
     @GetMapping("/api/v1/available-products")
     public List<ProductResponseDTO> selectAvailableProducts(){
-
         return productService.selectAvailableProducts();
     }
 
