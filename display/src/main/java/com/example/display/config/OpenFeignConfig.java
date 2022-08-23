@@ -1,6 +1,9 @@
 package com.example.display.config;
 
 
+import java.lang.reflect.Method;
+
+import org.springframework.cloud.openfeign.CircuitBreakerNameResolver;
 import org.springframework.cloud.openfeign.support.SpringEncoder;
 import org.springframework.cloud.openfeign.support.SpringMvcContract;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +17,7 @@ import feign.Contract;
 import feign.Logger;
 
 import feign.Logger.Level;
+import feign.Target;
 import feign.Util;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
@@ -23,6 +27,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Configuration
 public class OpenFeignConfig {
+
+
+    @Bean
+    public CircuitBreakerNameResolver circuitBreakerNameResolver(){
+        return (String feignClientName, Target<?> target, Method method) -> "backendA";
+    }
 
     @Bean
     public Contract feignContract(){

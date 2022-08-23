@@ -10,7 +10,9 @@ import com.example.product.dto.ProductResponseDTO;
 @Service
 public class ProductService {
 
-    public List<ProductResponseDTO> selectAvailableProducts(){
+    public List<ProductResponseDTO> selectAvailableProducts() throws InterruptedException {
+
+        Thread.sleep(10000);
 
         List<ProductResponseDTO> result = new ArrayList<>();
         result.add(ProductResponseDTO.builder()

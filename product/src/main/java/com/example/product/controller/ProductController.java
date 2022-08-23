@@ -19,7 +19,7 @@ public class ProductController {
      * @return 제품정보 목록
      */
     @GetMapping("/api/v1/available-products")
-    public List<ProductResponseDTO> selectAvailableProducts(){
+    public List<ProductResponseDTO> selectAvailableProducts() throws InterruptedException {
         return productService.selectAvailableProducts();
     }
 

@@ -28,9 +28,8 @@ dependencies {
 
 	// Feign 의존성 추가
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-
-
-	//implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+	// Circuit Breaker 의존성 추가
+	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 
 	// https://mvnrepository.com/artifact/com.netflix.feign/feign-jackson
 	implementation 'com.netflix.feign:feign-jackson:8.18.0'
