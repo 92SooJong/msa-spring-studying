@@ -31,7 +31,8 @@ public class OpenFeignConfig {
 
     @Bean
     public CircuitBreakerNameResolver circuitBreakerNameResolver(){
-        return (String feignClientName, Target<?> target, Method method) -> "backendA";
+        // Naming Rule : "cb_[Feign 이름]"
+        return (String feignClientName, Target<?> target, Method method) -> "cb-"+feignClientName;
     }
 
     @Bean
@@ -42,7 +43,7 @@ public class OpenFeignConfig {
 
     @Bean
     public Logger.Level feignLoggerLevel() {
-        return Level.HEADERS;
+        return Level.NONE;
     }
 
 
@@ -52,9 +53,6 @@ public class OpenFeignConfig {
         //return new JacksonEncoder();
         //return new SpringEncoder(messageConverters);
         return new JacksonEncoder();
-//        return new JAXBEncoder(new JAXBContextFactory.Builder()
-//            .withMarshallerJAXBEncoding("UTF-8")
-//            .build());
 
 
     }
