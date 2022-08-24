@@ -12,6 +12,7 @@ import com.example.display.api.ProductFeignClient.ProductFeignFallback;
 import com.example.display.config.OpenFeignConfig;
 import com.example.display.dto.AvailableProductResponseDTO;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
 import lombok.extern.slf4j.Slf4j;
 
 @FeignClient(name = "product-feign",url = "localhost:8080",
@@ -28,7 +29,7 @@ public interface ProductFeignClient {
 
         @Override
         public List<AvailableProductResponseDTO> selectAvailableProducts() {
-            log.debug("Circuit is opened!!");
+            log.info("Circuit is opened!!");
             return new ArrayList<>();
         }
     }

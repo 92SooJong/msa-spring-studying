@@ -31,9 +31,11 @@ public class OpenFeignConfig {
 
     @Bean
     public CircuitBreakerNameResolver circuitBreakerNameResolver(){
-        // Naming Rule : "cb_[Feign 이름]"
+
+        // Naming Rule : "cb-[Feign 이름]"
         return (String feignClientName, Target<?> target, Method method) -> "cb-"+feignClientName;
     }
+
 
     @Bean
     public Contract feignContract(){
@@ -43,8 +45,11 @@ public class OpenFeignConfig {
 
     @Bean
     public Logger.Level feignLoggerLevel() {
+
         return Level.NONE;
     }
+
+
 
 
     @Bean
@@ -64,7 +69,7 @@ public class OpenFeignConfig {
             String bodyStr = Util.toString(response.body().asReader(Util.UTF_8));
             //log.info("bodyStr>>>" + bodyStr);
             JavaType javaType = TypeFactory.defaultInstance().constructType(type);
-            System.out.println("bodyStr = " + bodyStr);
+            //System.out.println("bodyStr = " + bodyStr);
             return new ObjectMapper().readValue( bodyStr, javaType);
         };
 

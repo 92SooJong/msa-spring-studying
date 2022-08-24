@@ -4,7 +4,24 @@ server:
     context-path: /product
 logging:
   level:
-    root: debug
+    root: info
 feign:
   circuitbreaker:
-    enabled: true
+    enabled: true # Fegin에서
+
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        cancelRunningFuture: true
+        timeoutDuration: 10s
+  circuitbreaker:
+    instances:
+      cb-product-feign:
+        sliding-window-type: COUNT_BASED
+        sliding-window-size: 10
+        failure-rate-threshold: 10
+        slow-call-rate-threshold: 10
+        minimum-number-of-calls: 5
+        slow-call-duration-threshold: 2s
+
