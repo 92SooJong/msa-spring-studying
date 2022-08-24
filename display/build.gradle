@@ -28,6 +28,9 @@ dependencies {
 
 	// Feign 의존성 추가
 	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign:3.0.7'
+
+
+
 	// Circuit Breaker 의존성 추가
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:2.0.3'
 

@@ -12,7 +12,7 @@ import io.github.resilience4j.common.circuitbreaker.configuration.CircuitBreaker
 import io.github.resilience4j.common.timelimiter.configuration.TimeLimiterConfigCustomizer;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 
-@Configuration
+//@Configuration
 public class Resilience4jCircuitBreakerConfig {
 
 

@@ -20,7 +20,7 @@ import lombok.extern.slf4j.Slf4j;
 public interface ProductFeignClient {
 
     @RequestMapping(method = RequestMethod.GET ,
-        value = "/api/v1/available-products")
+        value = "/product/api/v1/available-products")
     List<AvailableProductResponseDTO> selectAvailableProducts();
 
     @Component
@@ -29,7 +29,8 @@ public interface ProductFeignClient {
 
         @Override
         public List<AvailableProductResponseDTO> selectAvailableProducts() {
-            log.info("Circuit is opened!!");
+            log.debug("Circuit is opened!");
+            System.out.println(" Circuit is OPENED!!!!!");
             return new ArrayList<>();
         }
     }

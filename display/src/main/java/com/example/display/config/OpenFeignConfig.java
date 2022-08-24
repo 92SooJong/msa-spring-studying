@@ -28,37 +28,28 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 public class OpenFeignConfig {
 
-
     @Bean
     public CircuitBreakerNameResolver circuitBreakerNameResolver(){
-
-        // Naming Rule : "cb-[Feign 이름]"
+        // Circuit Breaker Naming Rule : "cb-[Feign 이름]"
         return (String feignClientName, Target<?> target, Method method) -> "cb-"+feignClientName;
     }
 
 
     @Bean
     public Contract feignContract(){
-        return new SpringMvcContract();
-        //return new Contract.Default();
+        return new SpringMvcContract(); //return new Contract.Default();
     }
 
     @Bean
     public Logger.Level feignLoggerLevel() {
-
-        return Level.NONE;
+        return Level.FULL;
     }
-
-
-
 
     @Bean
     public Encoder encoder(){
         //return new feign.form.FormEncoder();
-        //return new JacksonEncoder();
         //return new SpringEncoder(messageConverters);
         return new JacksonEncoder();
-
 
     }
 
@@ -67,16 +58,19 @@ public class OpenFeignConfig {
 
         return (response, type) -> {
             String bodyStr = Util.toString(response.body().asReader(Util.UTF_8));
-            //log.info("bodyStr>>>" + bodyStr);
             JavaType javaType = TypeFactory.defaultInstance().constructType(type);
-            //System.out.println("bodyStr = " + bodyStr);
+            // Customizing 수행...
             return new ObjectMapper().readValue( bodyStr, javaType);
         };
-
-
         //return new GsonDecoder();
         //return new JacksonDecoder();
     }
+
+
+
+
+
+
 
 
 

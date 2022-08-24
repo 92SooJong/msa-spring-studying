@@ -21,11 +21,9 @@ public class MyTest implements Runnable{
     public void run() {
         System.out.println(this.count + "번째 쓰레드 시작");
         try {
-            Thread.sleep(2000);
-            mockMvc.perform(get(url)).andExpect(status().isOk());
+            mockMvc.perform(get(url));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(this.count + "번째 쓰레드 종료");
     }
 }

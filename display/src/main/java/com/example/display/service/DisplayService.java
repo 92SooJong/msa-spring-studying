@@ -21,11 +21,12 @@ public class DisplayService {
 
     public List<AvailableProductResponseDTO> selectAvailableProducts(){
 
-        System.out.println("timeLimiterRegistry = " + timeLimiterRegistry.getDefaultConfig().getTimeoutDuration());
-        System.out.println("circuitBreakerRegistry = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getCircuitBreakerConfig().getMinimumNumberOfCalls());
-        System.out.println("circuitBreakerRegistry = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getCircuitBreakerConfig().toString());
-
-        System.out.println("productFeignClient = " + circuitBreakerRegistry.getAllCircuitBreakers().toString());
+//        System.out.println("timeLimiterRegistry.getTimeoutDuration = " + timeLimiterRegistry.getDefaultConfig().getTimeoutDuration());
+//        System.out.println("circuitBreakerRegistry.getMinimumNumberOfCalls = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getCircuitBreakerConfig().getMinimumNumberOfCalls());
+//        System.out.println("circuitBreakerRegistry = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getCircuitBreakerConfig().toString());
+//
+//        System.out.println("productFeignClient.getAllCircuitBreakers = " + circuitBreakerRegistry.getAllCircuitBreakers().toString());
+        System.out.println("circuitBreakerRegistry.circuitBreaker(cb-product-feign).getMetrics() = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getMetrics().getNumberOfSlowCalls());
 
         List<AvailableProductResponseDTO> result = productFeignClient.selectAvailableProducts();
         System.out.println("result.toString() = " + result.toString());
