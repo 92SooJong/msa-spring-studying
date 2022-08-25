@@ -15,7 +15,7 @@ resilience4j:
       cb-product-feign:
         sliding-window-type: COUNT_BASED
         sliding-window-size: 10
-        #failure-rate-threshold: 70
+        failure-rate-threshold: 70
         slow-call-rate-threshold: 70
         minimum-number-of-calls: 5
         slow-call-duration-threshold: 2s

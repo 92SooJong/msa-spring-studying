@@ -30,7 +30,7 @@ public interface ProductFeignClient {
         @Override
         public List<AvailableProductResponseDTO> selectAvailableProducts() {
             log.debug("Circuit is opened!");
-            System.out.println(" Circuit is OPENED!!!!!");
+            System.out.printf("Circuit is opened! \n");
             return new ArrayList<>();
         }
     }

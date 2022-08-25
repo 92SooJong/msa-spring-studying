@@ -26,10 +26,12 @@ public class DisplayService {
 //        System.out.println("circuitBreakerRegistry = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getCircuitBreakerConfig().toString());
 //
 //        System.out.println("productFeignClient.getAllCircuitBreakers = " + circuitBreakerRegistry.getAllCircuitBreakers().toString());
-        System.out.println("circuitBreakerRegistry.circuitBreaker(cb-product-feign).getMetrics() = " + circuitBreakerRegistry.circuitBreaker("cb-product-feign").getMetrics().getNumberOfSlowCalls());
+
 
         List<AvailableProductResponseDTO> result = productFeignClient.selectAvailableProducts();
-        System.out.println("result.toString() = " + result.toString());
+        //System.out.printf("Sliding Window에 들어있는 느린 요청 수 = %d \n" , circuitBreakerRegistry.circuitBreaker("cb-product-feign").getMetrics().getNumberOfSlowCalls());
+
+        //System.out.println("result.toString() = " + result.toString());
         return result;
     }
 
