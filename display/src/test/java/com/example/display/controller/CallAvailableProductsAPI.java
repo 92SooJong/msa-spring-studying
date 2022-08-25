@@ -19,9 +19,9 @@ public class MyTest implements Runnable{
 
     @Override
     public void run() {
-        System.out.println(this.count + "번째 쓰레드 시작");
+        System.out.println( (this.count+1) + "번째 쓰레드 시작");
         try {
-            mockMvc.perform(get(url));
+            mockMvc.perform(get(url)).andExpect(status().isOk());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
