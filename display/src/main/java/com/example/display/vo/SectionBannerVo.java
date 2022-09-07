@@ -1,6 +1,6 @@
 package com.example.display.vo;
 
 
-public class SectionBannerVo {
+public class SectionBannerVo extends SectionVo{
 
 }
