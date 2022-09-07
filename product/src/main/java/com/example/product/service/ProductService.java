@@ -12,7 +12,7 @@ public class ProductService {
 
     public List<ProductResponseDTO> selectAvailableProducts() throws InterruptedException {
 
-        Thread.sleep(6000);
+        //Thread.sleep(6000);
 
 
         List<ProductResponseDTO> result = new ArrayList<>();

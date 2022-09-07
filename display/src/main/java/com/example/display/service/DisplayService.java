@@ -5,9 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.example.display.api.ProductFeignClient;
 import com.example.display.dto.AvailableProductResponseDTO;
-import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
+import com.example.display.vo.SectionVo;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
-import io.github.resilience4j.timelimiter.TimeLimiterConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterRegistry;
 import lombok.RequiredArgsConstructor;
 
@@ -35,4 +34,9 @@ public class DisplayService {
         return result;
     }
 
+    public List<SectionVo> selectMainSections() {
+
+
+        return null;
+    }
 }
