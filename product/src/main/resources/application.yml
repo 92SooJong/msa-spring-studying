@@ -4,4 +4,4 @@ server:
     context-path: /product
 logging:
   level:
-    root: debug
+    root: info
