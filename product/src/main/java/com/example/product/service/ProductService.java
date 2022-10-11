@@ -41,4 +41,10 @@ public class ProductService {
 
     }
 
+    public ProductResponseDTO getProductResponseDTO(long productNo, long productGroupNo){
+        return null;
+    }
+
+
+
 }
