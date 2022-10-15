@@ -1,7 +1,8 @@
 package com.example.product.constant;
 
-public enum LanguageType {
+public enum CountryCodeEnum {
+
     KOREA,
-    ENGLISH,
+    UNITED_STATE,
     JAPAN
 }
