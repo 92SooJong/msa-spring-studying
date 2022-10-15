@@ -1,4 +1,4 @@
-# spring-studying
+# spring-study
 
 ## Resilience4j Circuit Breaker 블로깅
 
