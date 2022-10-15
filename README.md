@@ -1,4 +1,4 @@
-# msa-spring-studying
+# spring-studying
 
 ## Resilience4j Circuit Breaker 블로깅
 
