@@ -11,7 +11,7 @@ feign:
   client:
     config:
       default:
-        logger-level: FULL
+        logger-level: basic
 
 
 resilience4j:
