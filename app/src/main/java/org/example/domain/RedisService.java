@@ -51,19 +51,26 @@ public class RedisService {
 
                 // Double-check the current value after acquiring lock
                 if (currentValue >= COUPON_LIMIT) {
-                    return "Coupon limit reached. No more increments allowed.";
+                    return "Coupon limit reached. No more increments allowed.\n";
+                }
+
+                // 쿠폰 발행 API 실행... (thread sleep 1초)
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
                 }
 
                 // Increment the coupon value
                 Long newValue = redisTemplate.opsForValue().increment("coupon");
 
-                return "Coupon incremented successfully. Current value: " + newValue;
+                return "Coupon incremented successfully. Current value: " + newValue + "\n";
             } else {
-                return "Could not acquire lock, please try again.";
+                return "Could not acquire lock, please try again.\n";
             }
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            return "An error occurred while attempting to acquire lock.";
+            return "An error occurred while attempting to acquire lock.\n";
         } finally {
             if (lock.isHeldByCurrentThread()) {
                 lock.unlock();
