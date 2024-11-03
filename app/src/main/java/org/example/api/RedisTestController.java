@@ -32,11 +32,8 @@ public class RedisTestController {
     }
 
     @PostMapping("/increment-coupon")
-    public Long incrementCoupon() {
-        redisService.incrementCoupon();
-        return redisService.getCouponValue();
-
-
+    public String incrementCoupon() {
+        return redisService.incrementCouponWithLock();
     }
 
 
