@@ -20,4 +20,16 @@ public class RedisService {
     public String getValue(String key) {
         return (String) redisTemplate.opsForValue().get(key);
     }
+
+    // Method to increment the value of "coupon" by 1
+    public Long incrementCoupon() {
+        return redisTemplate.opsForValue().increment("coupon");
+    }
+
+    // Method to get the current value of "coupon"
+    public Long getCouponValue() {
+        Object value = redisTemplate.opsForValue().get("coupon");
+        return value != null ? Long.parseLong(value.toString()) : 0L;
+    }
+
 }

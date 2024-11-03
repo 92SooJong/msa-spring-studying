@@ -31,4 +31,13 @@ public class RedisTestController {
         return value != null ? value : "Value not found";
     }
 
+    @PostMapping("/increment-coupon")
+    public Long incrementCoupon() {
+        redisService.incrementCoupon();
+        return redisService.getCouponValue();
+
+
+    }
+
+
 }
