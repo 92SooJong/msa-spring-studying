@@ -9,6 +9,8 @@ public class RedisService {
 
     private final RedisTemplate<String, Object> redisTemplate;
 
+    private static final long COUPON_LIMIT = 30;
+
     public RedisService(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
@@ -22,8 +24,14 @@ public class RedisService {
     }
 
     // Method to increment the value of "coupon" by 1
-    public Long incrementCoupon() {
-        return redisTemplate.opsForValue().increment("coupon");
+    public void incrementCoupon() {
+        Long currentValue = getCouponValue();
+
+        if (currentValue >= COUPON_LIMIT) {
+            throw new RuntimeException("Coupon limit reached. Cannot increment further.");
+        }
+
+        redisTemplate.opsForValue().increment("coupon");
     }
 
     // Method to get the current value of "coupon"
@@ -31,5 +39,7 @@ public class RedisService {
         Object value = redisTemplate.opsForValue().get("coupon");
         return value != null ? Long.parseLong(value.toString()) : 0L;
     }
+
+
 
 }
