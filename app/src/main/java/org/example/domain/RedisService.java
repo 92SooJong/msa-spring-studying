@@ -11,24 +11,29 @@ import org.redisson.api.RedissonClient;
 @Service
 public class RedisService {
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, Integer> redisTemplate;
     private final RedissonClient redissonClient;
 
-    private static final long COUPON_LIMIT = 30;
+    private static final long COUPON_LIMIT = 1000;
     private static final String LOCK_KEY = "couponLock"; // Lock key for Redisson
 
+    private static final String QUEUE_NAME = "integerQueue";
+    private static final long MAX_SIZE = 1000;
+    private static final int MIN_RANDOM = 1;
+    private static final int MAX_RANDOM = 8;
 
-    public RedisService(RedisTemplate<String, Object> redisTemplate, RedissonClient redissonClient) {
+
+    public RedisService(RedisTemplate<String, Integer> redisTemplate, RedissonClient redissonClient) {
         this.redisTemplate = redisTemplate;
         this.redissonClient = redissonClient;
     }
 
-    public void saveValue(String key, String value) {
+    public void saveValue(String key, Integer value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public String getValue(String key) {
-        return (String) redisTemplate.opsForValue().get(key);
+    public Integer getValue(String key) {
+        return redisTemplate.opsForValue().get(key);
     }
 
     // Method to increment the value of "coupon" by 1
@@ -55,11 +60,11 @@ public class RedisService {
                 }
 
                 // 쿠폰 발행 API 실행... (thread sleep 1초)
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    Thread.currentThread().interrupt();
+//                }
 
                 // Increment the coupon value
                 Long newValue = redisTemplate.opsForValue().increment("coupon");
