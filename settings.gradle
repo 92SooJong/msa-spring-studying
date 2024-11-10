@@ -12,3 +12,4 @@ plugins {
 
 rootProject.name = 'toy'
 include('app')
+include('app2')
